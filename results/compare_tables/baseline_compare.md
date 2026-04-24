@@ -1,0 +1,46 @@
+# Collected Metrics
+
+| Label | Requests | Batches | Avg Req/Batch | Avg Batch ms | Step Std ms | TTFT p90 s | E2E p90 s | TPOT p90 s | Throughput tok/s |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| balanced_moe_default | 12 | 3 | 4.00 | 1597.79 | 233.71 | 0.0809 | 1.4786 | 0.0115 | 280.39 |
+| hot_expert_default | 12 | 3 | 4.00 | 1911.58 | 202.50 | 0.0740 | 1.8421 | 0.0114 | 301.32 |
+| hot_rank_default | 12 | 3 | 4.00 | 2068.25 | 203.79 | 0.0803 | 1.9107 | 0.0112 | 293.97 |
+| mixed_burst_default | 12 | 3 | 4.00 | 1824.93 | 296.38 | 0.0878 | 1.9723 | 0.0141 | 263.02 |
+| repeated_prefix_moe_default | 12 | 3 | 4.00 | 1848.56 | 195.04 | 0.0862 | 1.7533 | 0.0140 | 242.35 |
+| balanced_max_util_probe | 12 | 3 | 4.00 | 18048.16 | 22782.56 | 0.0813 | 16.1281 | 0.1628 | 24.82 |
+| balanced_moe_guaranteed_no_evict | 12 | 3 | 4.00 | 1591.64 | 197.71 | 0.0764 | 1.4736 | 0.0114 | 281.47 |
+| balanced_moe_max_utilization | 12 | 3 | 4.00 | 1584.58 | 178.96 | 0.0737 | 1.4768 | 0.0115 | 282.72 |
+| balanced_moe_overlap | 12 | 3 | 4.00 | 1581.46 | 203.32 | 0.0823 | 1.4781 | 0.0114 | 283.28 |
+| balanced_overlap_probe | 12 | 3 | 4.00 | 16759.83 | 6663.58 | 0.1271 | 15.6093 | 0.0954 | 26.73 |
+| hot_expert_guaranteed_no_evict | 12 | 3 | 4.00 | 1932.54 | 203.43 | 0.0735 | 1.8571 | 0.0115 | 298.05 |
+| hot_expert_max_utilization | 12 | 3 | 4.00 | 1918.68 | 216.72 | 0.0734 | 1.8643 | 0.0116 | 300.21 |
+| hot_expert_overlap | 12 | 3 | 4.00 | 1937.22 | 231.84 | 0.1029 | 1.8786 | 0.0115 | 297.33 |
+| hot_rank_guaranteed_no_evict | 12 | 3 | 4.00 | 2069.39 | 193.09 | 0.0793 | 1.9222 | 0.0113 | 293.81 |
+| hot_rank_max_utilization | 12 | 3 | 4.00 | 2071.55 | 196.13 | 0.0738 | 1.9273 | 0.0113 | 293.50 |
+| hot_rank_overlap | 12 | 3 | 4.00 | 2071.26 | 201.49 | 0.0765 | 1.9189 | 0.0113 | 293.54 |
+| mixed_burst_guaranteed_no_evict | 12 | 3 | 4.00 | 1821.23 | 293.00 | 0.0773 | 1.9751 | 0.0141 | 263.56 |
+| mixed_burst_max_utilization | 12 | 3 | 4.00 | 1831.05 | 299.35 | 0.0725 | 1.9917 | 0.0142 | 262.14 |
+| mixed_burst_overlap | 12 | 3 | 4.00 | 1835.36 | 300.42 | 0.0781 | 1.9832 | 0.0142 | 261.53 |
+| repeated_prefix_moe_guaranteed_no_evict | 12 | 3 | 4.00 | 1855.90 | 181.94 | 0.0738 | 1.7405 | 0.0140 | 241.39 |
+| repeated_prefix_moe_max_utilization | 12 | 3 | 4.00 | 1856.47 | 182.52 | 0.0725 | 1.7469 | 0.0141 | 241.32 |
+| repeated_prefix_moe_overlap | 12 | 3 | 4.00 | 1854.98 | 188.31 | 0.0725 | 1.7523 | 0.0141 | 241.51 |
+
+## Comparisons
+
+| Baseline | Candidate | TTFT p90 delta s | E2E p90 delta s | TPOT p90 delta s | Step Std delta ms | Throughput delta tok/s |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| balanced_moe_default | balanced_moe_guaranteed_no_evict | -0.0044 | -0.0050 | -0.0000 | -36.01 | 1.08 |
+| balanced_moe_default | balanced_moe_max_utilization | -0.0072 | -0.0018 | 0.0001 | -54.75 | 2.34 |
+| balanced_moe_default | balanced_moe_overlap | 0.0014 | -0.0005 | -0.0000 | -30.40 | 2.90 |
+| hot_expert_default | hot_expert_guaranteed_no_evict | -0.0005 | 0.0150 | 0.0000 | 0.93 | -3.27 |
+| hot_expert_default | hot_expert_max_utilization | -0.0006 | 0.0222 | 0.0001 | 14.21 | -1.12 |
+| hot_expert_default | hot_expert_overlap | 0.0289 | 0.0365 | 0.0001 | 29.34 | -3.99 |
+| hot_rank_default | hot_rank_guaranteed_no_evict | -0.0010 | 0.0116 | 0.0001 | -10.70 | -0.16 |
+| hot_rank_default | hot_rank_max_utilization | -0.0065 | 0.0167 | 0.0001 | -7.66 | -0.47 |
+| hot_rank_default | hot_rank_overlap | -0.0038 | 0.0083 | 0.0000 | -2.30 | -0.43 |
+| mixed_burst_default | mixed_burst_guaranteed_no_evict | -0.0105 | 0.0028 | 0.0000 | -3.38 | 0.53 |
+| mixed_burst_default | mixed_burst_max_utilization | -0.0152 | 0.0194 | 0.0001 | 2.97 | -0.88 |
+| mixed_burst_default | mixed_burst_overlap | -0.0097 | 0.0109 | 0.0001 | 4.04 | -1.50 |
+| repeated_prefix_moe_default | repeated_prefix_moe_guaranteed_no_evict | -0.0125 | -0.0128 | -0.0000 | -13.10 | -0.96 |
+| repeated_prefix_moe_default | repeated_prefix_moe_max_utilization | -0.0138 | -0.0064 | 0.0000 | -12.51 | -1.03 |
+| repeated_prefix_moe_default | repeated_prefix_moe_overlap | -0.0137 | -0.0010 | 0.0001 | -6.73 | -0.84 |
