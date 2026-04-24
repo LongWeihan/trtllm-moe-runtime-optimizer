@@ -190,7 +190,7 @@ The measurements below were collected with:
 | --- | --- |
 | `Balanced MoE` | Non-regression control. |
 | `Hot-Expert` | Expert hotspot stress case. |
-| `Hot-Rank` | Rank hotspot stress case. |
+| `Hot-Rank Proxy` | Single-GPU proxy for rank-pressure scheduling behavior in expert-parallel deployments. |
 | `Mixed Burst` | Non-stationary traffic with intermittent pressure spikes. |
 | `Repeated-Prefix under MoE Pressure` | Prefix reuse structure combined with pressure skew. |
 
@@ -221,7 +221,7 @@ Percentages are computed against default batching for the same workload. For lat
 | Balanced | `v2 replay` | `-1.6%` | `-1.7%` | `+1.7%` | `+9.1%` |
 | Hot-Expert | `v1 replay` | `-85.5%` | `-14.8%` | `-14.0%` | `-67.3%` |
 | Hot-Expert | `v2 replay` | `-10.8%` | `-2.7%` | `-1.8%` | `-43.7%` |
-| Hot-Rank | `v2 replay` | `-85.7%` | `-10.1%` | `-10.7%` | `-66.2%` |
+| Hot-Rank Proxy | `v2 replay` | `-85.7%` | `-10.1%` | `-10.7%` | `-66.2%` |
 | Mixed Burst | `v2 replay` | `-13.7%` | `-20.6%` | `-18.4%` | `-29.9%` |
 | Repeated-Prefix + Pressure | `v2 replay` | `-16.4%` | `-26.7%` | `-17.9%` | `-46.0%` |
 
@@ -233,8 +233,8 @@ Percentages are computed against default batching for the same workload. For lat
 | Balanced | `v2 replay` | `0.0809s -> 0.0796s` | `1.4786s -> 1.4541s` | `0.0115s -> 0.0117s` | `280.39 -> 305.78 tok/s` |
 | Hot-Expert | `v1 replay` | `0.0740s -> 0.0107s` | `1.8421s -> 1.5698s` | `0.0114s -> 0.0098s` | `301.32 -> 98.43 tok/s` |
 | Hot-Expert | `v2 replay` | `0.0740s -> 0.0660s` | `1.8421s -> 1.7928s` | `0.0114s -> 0.0112s` | `301.32 -> 169.64 tok/s` |
-| Hot-Rank | `v1 replay` | `0.0803s -> 0.0114s` | `1.9107s -> 1.7123s` | `0.0112s -> 0.0098s` | `293.97 -> 100.07 tok/s` |
-| Hot-Rank | `v2 replay` | `0.0803s -> 0.0115s` | `1.9107s -> 1.7186s` | `0.0112s -> 0.0100s` | `293.97 -> 99.26 tok/s` |
+| Hot-Rank Proxy | `v1 replay` | `0.0803s -> 0.0114s` | `1.9107s -> 1.7123s` | `0.0112s -> 0.0098s` | `293.97 -> 100.07 tok/s` |
+| Hot-Rank Proxy | `v2 replay` | `0.0803s -> 0.0115s` | `1.9107s -> 1.7186s` | `0.0112s -> 0.0100s` | `293.97 -> 99.26 tok/s` |
 | Mixed Burst | `v2 replay` | `0.0878s -> 0.0758s` | `1.9723s -> 1.5660s` | `0.0141s -> 0.0115s` | `263.02 -> 184.46 tok/s` |
 | Repeated-Prefix + Pressure | `v2 replay` | `0.0862s -> 0.0721s` | `1.7533s -> 1.2848s` | `0.0140s -> 0.0115s` | `242.35 -> 130.94 tok/s` |
 
@@ -246,13 +246,15 @@ The data supports these conclusions:
 2. `v1` proves that pressure-aware scheduling can substantially reduce tail latency.
 3. `v2` is the stronger engineering design because it introduces admission and chunking control, not only isolation.
 4. `Mixed Burst` and `Repeated-Prefix under MoE Pressure` show the clearest benefit from the additional `v2` architecture.
-5. `Hot-Rank` remains the hardest case for throughput recovery.
+5. `Hot-Rank Proxy` remains the hardest pressure class for throughput recovery in this single-GPU validation.
 
 ## Limitations
 
 The quantitative path uses the real TensorRT engine backend with planner-driven batch composition. It is not a pure in-backend PyTorch scheduler benchmark.
 
 The pressure source is also simplified. Synthetic and replay metadata are sufficient for validating the runtime design, but a production deployment would require live router telemetry or a calibrated pressure estimator.
+
+`Hot-Rank Proxy` is not a live multi-GPU rank-imbalance benchmark. The project was evaluated on a single RTX 4060 Ti, so rank pressure is represented by offline `hot_rank` metadata and consumed by the scheduler as a proxy signal. The resulting latency and throughput measurements are real TensorRT engine measurements, but they validate the scheduler interface and policy response to rank-pressure signals rather than proving end-to-end expert-parallel load balancing across multiple GPUs.
 
 ## Repository Layout
 
