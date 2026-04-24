@@ -60,7 +60,7 @@ But it did so by collapsing the effective batch size and paying a very large thr
 
 ## Bottom line
 
-The full-version project shows a more interesting conclusion than the 24h slice:
+The full-version project shows a more interesting conclusion than the compact slice:
 
 - `v1` proves the pressure signal is useful
 - `v2` shows that adding admission and prefill control makes the result feel like a real runtime architecture enhancement

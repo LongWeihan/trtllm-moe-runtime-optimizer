@@ -2,7 +2,7 @@
 
 ## Goal
 
-Obtain a small, reproducible latency / throughput reading on the real full-version engine before starting scheduler experiments.
+Obtain a small, reproducible latency / throughput reading on the real full-version engine before starting scheduler evaluations.
 
 ## Workload
 

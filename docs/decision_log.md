@@ -5,12 +5,12 @@
 ### D001 - Full-version workspace layout
 
 - Options:
-  - reuse the 24h workspace directly
+  - reuse the previous workspace directly
   - create a separate full-version workspace
 - Decision:
   - create a separate workspace at `full_version/trtllm-moe-runtime-exp` and `/home/a/trtllm-moe-runtime-exp-full`
 - Reason:
-  - keeps the full-version run isolated from the 24h slice
+  - keeps the full-version run isolated from the compact slice
   - allows independent docs, results, and task tracking
 
 ### D002 - Keep the quantitative path on the real TensorRT engine backend

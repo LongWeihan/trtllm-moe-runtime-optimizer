@@ -2,7 +2,7 @@
 
 ## Naming convention
 
-Primary experiment name format:
+Primary evaluation name format:
 
 `<date>_<model>_<quant>_<workload>_<variant>`
 

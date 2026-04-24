@@ -36,7 +36,7 @@ This machine is suitable for the intended full-version project shape:
 - single-GPU TensorRT-LLM runtime work
 - real `Qwen/Qwen1.5-MoE-A2.7B-Chat`
 - INT4 weight-only engine path
-- MoE workload and scheduler experiments
+- MoE workload and scheduler evaluations
 
 It is not the target machine for:
 

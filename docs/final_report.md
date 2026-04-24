@@ -30,7 +30,7 @@ Make the project feel like TensorRT-LLM runtime work, not a toy scheduler:
 - keep the real TRT-LLM model path
 - add a minimal runtime resource model
 - validate the effect on real MoE inference
-- push beyond the 24h slice with stronger baselines and broader workloads
+- push beyond the compact slice with stronger baselines and broader workloads
 
 ## Real model path
 
@@ -40,7 +40,7 @@ The project completed the real model path end to end:
 2. convert to TRT-LLM checkpoint
 3. build `INT4 weight-only` engine
 4. run real engine generation
-5. run all full-version experiments on that engine path
+5. run all full-version evaluations on that engine path
 
 Evidence:
 
@@ -124,7 +124,7 @@ The full-version project kept all five planned workloads:
 - `Mixed Burst`
 - `Repeated-Prefix under MoE Pressure`
 
-That is one of the main differences from the 24h slice.
+That is one of the main differences from the compact slice.
 
 ## Baseline conclusion
 

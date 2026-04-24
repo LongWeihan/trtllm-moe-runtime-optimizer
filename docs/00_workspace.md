@@ -12,8 +12,8 @@
 
 This full-version run is intentionally separated from:
 
-- `C:\26spring\nv项目\24h_version`
+- `C:\26spring\nv项目\compact_version`
 - `C:\26spring\nv项目\trtllm-moe-runtime-exp`
 - `/home/a/trtllm-moe-runtime-exp`
 
-24h artifacts may be referenced as prior evidence, but all new full-version deliverables are written under the full-version workspace.
+previous artifacts may be referenced as prior evidence, but all new full-version deliverables are written under the full-version workspace.

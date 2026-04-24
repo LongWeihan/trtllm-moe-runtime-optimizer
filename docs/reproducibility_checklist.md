@@ -56,8 +56,6 @@ The final deliverables that should exist after a successful rerun:
 
 - `docs/final_report.md`
 - `docs/result_summary.md`
-- `docs/interview_talking_points.md`
-- `docs/resume_bullets.md`
 - `docs/reproducibility_checklist.md`
 - `results/compare_tables/selected_summary.md`
 

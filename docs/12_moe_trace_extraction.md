@@ -2,7 +2,7 @@
 
 ## Goal
 
-Create a replay-compatible pressure trace format that the scheduler experiments can consume.
+Create a replay-compatible pressure trace format that the scheduler evaluation pipeline can consume.
 
 ## Implementation
 
@@ -37,4 +37,4 @@ The real TensorRT engine path on this machine does not expose live expert routin
 - the real benchmark result file
 - synthetic expert/rank histograms aligned with the assigned pressure class
 
-This is enough to support replay-pressure experiments, while keeping the limitation explicit.
+This is enough to support replay-pressure evaluation, while keeping the limitation explicit.

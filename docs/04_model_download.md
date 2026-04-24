@@ -7,7 +7,7 @@
 
 ## Materialization method
 
-Because the model was already present on the same machine from the validated 24h run, the full-version workspace materialized its own model directory from the existing local source instead of re-downloading from the network.
+Because the model was already present on the same machine from the validated validated run, the full-version workspace materialized its own model directory from the existing local source instead of re-downloading from the network.
 
 This keeps the full-version run reproducible on the current machine while avoiding unnecessary duplicate transfer time.
 

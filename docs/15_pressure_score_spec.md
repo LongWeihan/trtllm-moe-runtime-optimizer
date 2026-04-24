@@ -48,4 +48,4 @@ Each request may carry:
 
 ## Current limitation
 
-The score is manually calibrated and workload-aware. It is designed for scheduler experiments, not as a universal MoE latency oracle.
+The score is manually calibrated and workload-aware. It is designed for scheduler evaluation, not as a universal MoE latency oracle.

@@ -68,7 +68,7 @@ This is the other strongest `v2` story:
 - step std: `195.04ms -> 109.51ms`
 - throughput: `242.35 -> 130.94 tok/s`
 
-That result is exactly why the full-version project kept the repeated-prefix workload instead of trimming back to the 24h slice.
+That result is exactly why the full-version project kept the repeated-prefix workload instead of trimming back to the compact slice.
 
 ## Conclusion
 

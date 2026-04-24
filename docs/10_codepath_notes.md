@@ -37,7 +37,7 @@ This is where the conversion path is exercised during the PyTorch backend reques
 
 ## Real benchmark split
 
-The project still keeps the same honest split established in the 24h run:
+The project still keeps the same honest split established in the validated run:
 
 - internal patch exists on the PyTorch backend seam
 - quantitative benchmark path runs on the real TensorRT engine backend
