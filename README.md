@@ -1,15 +1,15 @@
-# TRT-LLM MoE Pressure Lab
+# TRT-LLM MoE Runtime Optimizer
 
 [![NVIDIA TensorRT-LLM](https://img.shields.io/badge/NVIDIA-TensorRT--LLM-76B900?logo=nvidia&logoColor=white)](https://github.com/NVIDIA/TensorRT-LLM)
 [![MoE Inference](https://img.shields.io/badge/MoE-Inference-0B7285)](#overview)
 [![Runtime Scheduling](https://img.shields.io/badge/Runtime-Scheduling-495057)](#core-design)
 [![CUDA GPU](https://img.shields.io/badge/CUDA-GPU%20Inference-76B900?logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-zone)
 
-Pressure-aware admission, chunking, and runtime scheduling ablations for TensorRT-LLM MoE inference.
+Pressure-aware admission, adaptive chunking, and runtime scheduling optimization for TensorRT-LLM MoE inference.
 
 ## Overview
 
-`TRT-LLM MoE Pressure Lab` is a runtime engineering project for studying how MoE-specific pressure should influence scheduling decisions. It provides a structured pipeline for representing request pressure, building runtime budgets, selecting batches, controlling prefill behavior, and measuring the resulting latency-throughput tradeoff.
+`TRT-LLM MoE Runtime Optimizer` is a runtime engineering project for improving TensorRT-LLM MoE inference under expert and rank hotspot pressure. It provides a structured optimization pipeline for representing request pressure, building runtime budgets, selecting batches, controlling prefill behavior, and measuring the resulting latency-throughput tradeoff.
 
 The project is organized around one systems question:
 
@@ -28,7 +28,7 @@ The implementation answers that question with two planner generations:
 - Admission control with dynamic pressure budgets.
 - Adaptive chunking under MoE pressure.
 - Replay-based pressure validation.
-- Reproducible baseline and ablation matrix execution.
+- Reproducible baseline and scheduler-variant evaluation.
 
 ## System Architecture
 
