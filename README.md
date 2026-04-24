@@ -203,16 +203,23 @@ The measurements below were collected with:
 
 ### Result Summary
 
-| Workload | Candidate | Baseline E2E p90 | Candidate E2E p90 | Baseline Throughput | Candidate Throughput |
+The table reports p90 latency because the optimizer targets online-serving tail behavior:
+
+- `TTFT`: time to first token, measuring initial responsiveness
+- `E2E`: end-to-end request latency, measuring completion tail
+- `TPOT`: time per output token, measuring decode pace
+- `Throughput`: aggregate token production rate
+
+| Workload | Candidate | TTFT p90 | E2E p90 | TPOT p90 | Throughput |
 | --- | --- | ---: | ---: | ---: | ---: |
-| Balanced | `MAX_UTILIZATION` | `1.4786s` | `1.4768s` | `280.39 tok/s` | `282.72 tok/s` |
-| Balanced | `v2 replay` | `1.4786s` | `1.4541s` | `280.39 tok/s` | `305.78 tok/s` |
-| Hot-Expert | `v1 replay` | `1.8421s` | `1.5698s` | `301.32 tok/s` | `98.43 tok/s` |
-| Hot-Expert | `v2 replay` | `1.8421s` | `1.7928s` | `301.32 tok/s` | `169.64 tok/s` |
-| Hot-Rank | `v1 replay` | `1.9107s` | `1.7123s` | `293.97 tok/s` | `100.07 tok/s` |
-| Hot-Rank | `v2 replay` | `1.9107s` | `1.7186s` | `293.97 tok/s` | `99.26 tok/s` |
-| Mixed Burst | `v2 replay` | `1.9723s` | `1.5660s` | `263.02 tok/s` | `184.46 tok/s` |
-| Repeated-Prefix + Pressure | `v2 replay` | `1.7533s` | `1.2848s` | `242.35 tok/s` | `130.94 tok/s` |
+| Balanced | `MAX_UTILIZATION` | `0.0809s -> 0.0737s` | `1.4786s -> 1.4768s` | `0.0115s -> 0.0115s` | `280.39 -> 282.72 tok/s` |
+| Balanced | `v2 replay` | `0.0809s -> 0.0796s` | `1.4786s -> 1.4541s` | `0.0115s -> 0.0117s` | `280.39 -> 305.78 tok/s` |
+| Hot-Expert | `v1 replay` | `0.0740s -> 0.0107s` | `1.8421s -> 1.5698s` | `0.0114s -> 0.0098s` | `301.32 -> 98.43 tok/s` |
+| Hot-Expert | `v2 replay` | `0.0740s -> 0.0660s` | `1.8421s -> 1.7928s` | `0.0114s -> 0.0112s` | `301.32 -> 169.64 tok/s` |
+| Hot-Rank | `v1 replay` | `0.0803s -> 0.0114s` | `1.9107s -> 1.7123s` | `0.0112s -> 0.0098s` | `293.97 -> 100.07 tok/s` |
+| Hot-Rank | `v2 replay` | `0.0803s -> 0.0115s` | `1.9107s -> 1.7186s` | `0.0112s -> 0.0100s` | `293.97 -> 99.26 tok/s` |
+| Mixed Burst | `v2 replay` | `0.0878s -> 0.0758s` | `1.9723s -> 1.5660s` | `0.0141s -> 0.0115s` | `263.02 -> 184.46 tok/s` |
+| Repeated-Prefix + Pressure | `v2 replay` | `0.0862s -> 0.0721s` | `1.7533s -> 1.2848s` | `0.0140s -> 0.0115s` | `242.35 -> 130.94 tok/s` |
 
 ### Interpretation
 
