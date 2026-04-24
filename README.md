@@ -203,12 +203,29 @@ The measurements below were collected with:
 
 ### Result Summary
 
-The table reports p90 latency because the optimizer targets online-serving tail behavior:
+The result section is split into relative changes and raw values. Relative changes make the tradeoff easy to scan, while raw values keep the measurement scale explicit.
+
+The tables report p90 latency because the optimizer targets online-serving tail behavior:
 
 - `TTFT`: time to first token, measuring initial responsiveness
 - `E2E`: end-to-end request latency, measuring completion tail
 - `TPOT`: time per output token, measuring decode pace
 - `Throughput`: aggregate token production rate
+
+#### Headline Changes
+
+Percentages are computed against default batching for the same workload. For latency metrics, lower is better; for throughput, higher is better.
+
+| Workload | Candidate | TTFT p90 Change | E2E p90 Change | TPOT p90 Change | Throughput Change |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Balanced | `v2 replay` | `-1.6%` | `-1.7%` | `+1.7%` | `+9.1%` |
+| Hot-Expert | `v1 replay` | `-85.5%` | `-14.8%` | `-14.0%` | `-67.3%` |
+| Hot-Expert | `v2 replay` | `-10.8%` | `-2.7%` | `-1.8%` | `-43.7%` |
+| Hot-Rank | `v2 replay` | `-85.7%` | `-10.1%` | `-10.7%` | `-66.2%` |
+| Mixed Burst | `v2 replay` | `-13.7%` | `-20.6%` | `-18.4%` | `-29.9%` |
+| Repeated-Prefix + Pressure | `v2 replay` | `-16.4%` | `-26.7%` | `-17.9%` | `-46.0%` |
+
+#### Detailed Values
 
 | Workload | Candidate | TTFT p90 | E2E p90 | TPOT p90 | Throughput |
 | --- | --- | ---: | ---: | ---: | ---: |
